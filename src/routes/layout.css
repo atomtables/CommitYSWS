@@ -9,7 +9,7 @@
 
 @layer base {
     html {
-        color-scheme: light dark;
+        color-scheme: only dark;
     }
 
     .bg-primary {
