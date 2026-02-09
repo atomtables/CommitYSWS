@@ -3,6 +3,9 @@
 	import Marqueeck from '@arisbh/marqueeck';
 	import { onMount } from 'svelte';
 
+	let messageindex = $state(0);
+	let commitindex = $state(0);
+
 	let charIndex = $state(0);
 	const totalChars = 41;
 	let initialDone = $derived(charIndex >= totalChars);
@@ -123,12 +126,22 @@
 		}, 50);
 
 		let timer1 = setInterval(() => {
-			changeProject(projects[Math.floor(Math.random() * projects.length)]);
+			let n = Math.floor(Math.random() * projects.length);
+			while (n === messageindex) {
+				n = Math.floor(Math.random() * projects.length);
+			}
+			messageindex = n;
+			changeProject(projects[messageindex]);
 		}, 5000);
 		let timer2: ReturnType<typeof setInterval>;
 		setTimeout(() => {
 			timer2 = setInterval(() => {
-				changeCommit(commits[Math.floor(Math.random() * commits.length)]);
+				let n = Math.floor(Math.random() * commits.length);
+				while (n === commitindex) {
+					n = Math.floor(Math.random() * commits.length);
+				}
+				commitindex = n;
+				changeCommit(commits[commitindex]);
 			}, 5000);
 		}, 2000);
 		return () => {
@@ -143,8 +156,13 @@
 	let shopItems = [
 		{ name: 'Github Gift card', description: 'Expand your horizons... or at least your codespace limits. A $20 gift card for GitHub', image: '/github.jpg' },
 		{ name: 'Hack Club Stickers', description: 'A pack of sum Hack Club stickers to decorate your laptop, water bottle, or whatever you want!', image: '/pile_of_stickers.webp' },
-		{ name: 'Commit Hoodie', description: 'A hoodie with the Commit logo on it. Definitely worth wearing out to events.', image: '/hoodie.png' },
+		{ name: 'Commit Hoodie', description: 'A hoodie with the Commit logo on it. Definitely worth wearing out to events. DESIGN NOT FINAL.', image: '/hoodie.png' },
 	];
+	let shopItems2 = [
+		{ name: 'Personal hosting', description: "Every journey needs to start somewhere, but also needs to be sent somewhere.", image: '/serverhosting.png'},
+		{ name: 'Random Access Memory', description: "Get that sweet sweet 256MB? of ram that you've always wanted.", image: "/dram.jpg"},
+		{ name: "Keyboard Grant", description: 'We shall grant you a keyboard of due power, clickety clacks, and some lighting.', image: "/keyboard.jpg"}
+	]
 
 	const faqs = [
 		{
@@ -162,6 +180,10 @@
 		{
 			question: 'Will the shop be expanded?',
 			answer: 'Absolutely! Join the Slack channel to suggest items you want to see in the shop.'
+		},
+		{
+			question: "Can I help out?",
+			answer: 'Yes! Join the Slack channel to find out how you can help out, whether that be through coding, design, or just spreading the word.'
 		}
 	];
 </script>
@@ -227,7 +249,7 @@
 			<span class="invisible">{initialDone ? '' : hid(`"${commitString}"`, 25)}</span>
 		</div>
 	</div>
-	<div>Write PRs on our community projects. Get free stuff.</div>
+	<div>Write PRs on HC community projects. Get free stuff.</div>
 
 	<div class="flex flex-row items-center justify-center gap-4">
 		<Button
@@ -262,7 +284,7 @@
 			the amount of points you have.
 		</div>
 		<h3>tl;dr:</h3>
-		<div class="flex flex-row gap-2 *:rounded-2xl *:bg-black/20 *:backdrop-blur-3xl">
+		<div class="flex flex-row gap-2 *:rounded-2xl *:bg-black/20 *:backdrop-blur-3xl *:border *:border-green-200/40 *:hover:bg-black/40 *:hover:scale-105 *:transition-all">
 			<div
 				class="bg-green-/50 flex h-48 w-48 flex-col items-center justify-center rounded-lg p-4 text-center"
 			>
@@ -295,20 +317,35 @@
 			</div>
 		</div>
 	</div>
-	<div class="flex max-w-full flex-col items-center justify-center overflow-x-hidden py-20">
+	<div class="flex max-w-full flex-col items-center justify-center overflow-x-hidden overflow-y-visible py-20">
 		<div class="text-4xl font-bold">we ship!</div>
 		<div class="max-w-2xl p-2 text-center">cool stuff. not final as of now!!!!</div>
-		<Marqueeck>
-			{#each shopItems as item}
-				<div class="flex max-h-36 flex-row">
-					<img src={item.image} alt={item.name} class="rounded-lg bg-white p-5 h-36 aspect-auto" />
-					<div class="bg-green-/50 flex w-56 flex-col justify-center rounded-lg p-4 text-left">
-						<div class="text-xl font-bold">{item.name}</div>
-						<div>{item.description}</div>
+		<div class="w-full bg-slate-800 my-2 overflow-visible">
+			<Marqueeck>
+				{#each shopItems as item}
+					<div class="my-5 flex max-h-36 flex-row border-green-300/20 border-2 hover:bg-green-500/20 group transition-all rounded-2xl overflow-visible">
+						<img src={item.image} alt={item.name} class="group-hover:rotate-6 transition-all overflow-visible rounded-lg bg-white p-5 h-36 aspect-auto" />
+						<div class="bg-green-/50 flex w-56 flex-col justify-center rounded-lg p-4 text-left">
+							<div class="text-xl font-bold">{item.name}</div>
+							<div>{item.description}</div>
+						</div>
 					</div>
-				</div>
-			{/each}
-		</Marqueeck>
+				{/each}
+			</Marqueeck>
+		</div>
+		<div class="w-full bg-slate-800 my-2 overflow-visible">
+			<Marqueeck speed={40}>
+				{#each shopItems2 as item}
+					<div class="my-5 flex max-h-36 flex-row border-green-300/20 border-2 hover:bg-green-500/20 group transition-all rounded-2xl overflow-visible">
+						<img src={item.image} alt={item.name} class="group-hover:rotate-6 transition-all overflow-visible rounded-lg bg-white p-5 h-36 aspect-auto" />
+						<div class="bg-green-/50 flex w-56 flex-col justify-center rounded-lg p-4 text-left">
+							<div class="text-xl font-bold">{item.name}</div>
+							<div>{item.description}</div>
+						</div>
+					</div>
+				{/each}
+			</Marqueeck>
+		</div>
 	</div>
 
 	<div class="flex flex-col items-center justify-center gap-6 py-20">
