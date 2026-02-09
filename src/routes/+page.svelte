@@ -283,7 +283,7 @@
 			In this YSWS, you commit and make PRs on our public community projects. These community
 			projects come from Commit, and are purely worked on by people like you! As you commit and get
 			your code merged, you gain more trust in the community based on the quality of your work, and
-			can gain higher roles and even the ability to help manage (and start) your own community projects! Every
+			can gain higher roles and even the ability to <b>help manage (and start) your own community projects</b>! Every
 			completed PR can earn you points in the shop. You can then get items from the shop based on
 			the amount of points you have.
 		</div>
