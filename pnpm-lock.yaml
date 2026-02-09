@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@arisbh/marqueeck':
+        specifier: ^0.5.1
+        version: 0.5.1(svelte@5.50.0)
     devDependencies:
       '@sveltejs/adapter-static':
         specifier: ^3.0.10
@@ -46,6 +50,11 @@ importers:
         version: 7.3.1(jiti@2.6.1)(lightningcss@1.30.2)
 
 packages:
+
+  '@arisbh/marqueeck@0.5.1':
+    resolution: {integrity: sha512-7sjBwIRvm+UdQgb8fOK44ssy+oMC5A/33/CC+E62OzMtW2i5OotE3xw0YY+tjqOI7y9LV1d44rHixhni0IEGOw==}
+    peerDependencies:
+      svelte: ^5.0.0
 
   '@esbuild/aix-ppc64@0.27.3':
     resolution: {integrity: sha512-9fJMTNFTWZMh5qwrBItuziu834eOCUcEqymSH7pY+zoMVEZg3gcPuBNxH1EvfVYe9h0x/Ptw8KBzv7qxb7l8dg==}
@@ -843,6 +852,10 @@ packages:
     resolution: {integrity: sha512-B58NGBEoc8Y9MWWCQGl/gq9xBCe4IiKM0a2x7GZdQKOW5Exr8S1W24J6OgM1njK8xCRGvAJIL/MxXHf6SkmQKQ==}
 
 snapshots:
+
+  '@arisbh/marqueeck@0.5.1(svelte@5.50.0)':
+    dependencies:
+      svelte: 5.50.0
 
   '@esbuild/aix-ppc64@0.27.3':
     optional: true
