@@ -184,6 +184,10 @@
 		{
 			question: "Can I help out?",
 			answer: 'Yes! Join the Slack channel to find out how you can help out, whether that be through coding, design, or just spreading the word.'
+		},
+		{
+			question: "I don't understand. Who do I ask for help?",
+			answer: 'Join the Slack channel and ask away! We have a bunch of people there who would be more than happy to help you out with any questions you have, whether it be about the YSWS or just coding in general.'
 		}
 	];
 </script>
@@ -279,7 +283,7 @@
 			In this YSWS, you commit and make PRs on our public community projects. These community
 			projects come from Commit, and are purely worked on by people like you! As you commit and get
 			your code merged, you gain more trust in the community based on the quality of your work, and
-			can gain higher roles and even the ability to help manage these community projects! Every
+			can gain higher roles and even the ability to help manage (and start) your own community projects! Every
 			completed PR can earn you points in the shop. You can then get items from the shop based on
 			the amount of points you have.
 		</div>
