@@ -288,7 +288,7 @@
 			the amount of points you have.
 		</div>
 		<h3>tl;dr:</h3>
-		<div class="flex flex-row gap-2 *:rounded-2xl *:bg-black/20 *:backdrop-blur-3xl *:border *:border-green-200/40 *:hover:bg-black/40 *:hover:scale-105 *:transition-all">
+		<div class="flex flex-row flex-wrap items-center justify-center gap-2 *:rounded-2xl *:bg-black/20 *:backdrop-blur-3xl *:border *:border-green-200/40 *:hover:bg-black/40 *:hover:scale-105 *:transition-all">
 			<div
 				class="bg-green-/50 flex h-48 w-48 flex-col items-center justify-center rounded-lg p-4 text-center"
 			>
