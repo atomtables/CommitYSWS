@@ -34,7 +34,7 @@
 		in:fade={{ duration: 500 }}
 	>
 		{#if finishedAnimation}
-			<div in:fade={{ duration: 500 }} class="h-full w-full overflow-auto dark:bg-black/50">
+			<div in:fade={{ duration: 500 }} class="h-full w-full overflow-auto bg-black/50">
 				<div class="h-full w-full">
 					{@render children()}
 					<footer class="bg-neutral-800/50 backdrop-blur-3xl">
