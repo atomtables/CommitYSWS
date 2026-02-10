@@ -171,7 +171,7 @@
 		},
 		{
 			question: 'How can I track my progress?',
-			answer: 'You will be using Hackatime to track time spent coding. More hours = more points, but quality also matters a lot!'
+			answer: 'You will be using Hackatime to track time spent coding. More hours = more points, but quality also matters a lot! You have to be between 13-18yo.'
 		},
 		{
 			question: 'Can I BYOP? (bring your own project)',
