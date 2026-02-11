@@ -163,6 +163,11 @@
 		{ name: 'Random Access Memory', description: "Get that sweet sweet 256MB? of ram that you've always wanted.", image: "/dram.jpg"},
 		{ name: "Keyboard Grant", description: 'We shall grant you a keyboard of due power, clickety clacks, and some lighting.', image: "/keyboard.jpg"}
 	]
+	let shopItems3 = [
+		{ name: '"Linux ISOs" disk', description: "A USB drive so you can enjoy your 'Linux ISOs' in 4k24fps (unless eu where 25fps)!!!", image: '/usb.avif'},
+		{ name: '"Beyond Linux" disks', description: "Sometimes those 'Linux ISOs' need a bigger, more powerful, and more permanent home.", image: "/harddisk.jpg"},
+		{ name: '"Linus" disks', description: 'Neither a stick or a disk shall satisfy my needs, only a... slightly... bigger... disk...', image: "/hdd.jpg"}
+	]
 
 	const faqs = [
 		{
@@ -324,7 +329,7 @@
 	<div class="flex max-w-full flex-col items-center justify-center overflow-x-hidden overflow-y-visible py-20">
 		<div class="text-4xl font-bold">we ship!</div>
 		<div class="max-w-2xl p-2 text-center">cool stuff. not final as of now!!!!</div>
-		<div class="w-full bg-slate-800 my-2 overflow-visible">
+		<div class="w-full bg-slate-800 my-2 overflow-visible -rotate-5 scale-105">
 			<Marqueeck>
 				{#each shopItems as item}
 					<div class="my-5 flex max-h-36 flex-row border-green-300/20 border-2 hover:bg-green-500/20 group transition-all rounded-2xl overflow-visible">
@@ -337,9 +342,22 @@
 				{/each}
 			</Marqueeck>
 		</div>
-		<div class="w-full bg-slate-800 my-2 overflow-visible">
+		<div class="w-full bg-slate-800 my-2 overflow-visible -rotate-5 scale-105">
 			<Marqueeck speed={40}>
 				{#each shopItems2 as item}
+					<div class="my-5 flex max-h-36 flex-row border-green-300/20 border-2 hover:bg-green-500/20 group transition-all rounded-2xl overflow-visible">
+						<img src={item.image} alt={item.name} class="group-hover:rotate-6 transition-all overflow-visible rounded-lg bg-white p-5 h-36 aspect-auto" />
+						<div class="bg-green-/50 flex w-56 flex-col justify-center rounded-lg p-4 text-left">
+							<div class="text-xl font-bold">{item.name}</div>
+							<div>{item.description}</div>
+						</div>
+					</div>
+				{/each}
+			</Marqueeck>
+		</div>
+		<div class="w-full bg-slate-800 my-2 overflow-visible -rotate-5 scale-105">
+			<Marqueeck speed={40}>
+				{#each shopItems3 as item}
 					<div class="my-5 flex max-h-36 flex-row border-green-300/20 border-2 hover:bg-green-500/20 group transition-all rounded-2xl overflow-visible">
 						<img src={item.image} alt={item.name} class="group-hover:rotate-6 transition-all overflow-visible rounded-lg bg-white p-5 h-36 aspect-auto" />
 						<div class="bg-green-/50 flex w-56 flex-col justify-center rounded-lg p-4 text-left">
