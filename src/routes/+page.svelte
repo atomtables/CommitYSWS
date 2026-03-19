@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Button from '$lib/components/Button.svelte';
+	import WorkflowAnimation from '$lib/components/WorkflowAnimation.svelte';
 	import Marqueeck from '@arisbh/marqueeck';
 	import { onMount } from 'svelte';
 
@@ -154,20 +155,72 @@
 	let currentHoverMessage = $state(0);
 
 	let shopItems = [
-		{ name: 'Github Gift card', description: 'Expand your horizons... or at least your codespace limits. A $20 gift card for GitHub', image: '/github.jpg' },
-		{ name: 'Hack Club Stickers', description: 'A pack of sum Hack Club stickers to decorate your laptop, water bottle, or whatever you want!', image: '/pile_of_stickers.webp' },
-		{ name: 'Commit Hoodie', description: 'A hoodie with the Commit logo on it. Definitely worth wearing out to events. DESIGN NOT FINAL.', image: '/hoodie.png' },
+		{
+			name: 'Github Gift card',
+			description:
+				'Expand your horizons... or at least your codespace limits. A $20 gift card for GitHub',
+			image: '/github.jpg',
+			hours: 4
+		},
+		{
+			name: 'Hack Club Stickers',
+			description:
+				'A pack of sum Hack Club stickers to decorate your laptop, water bottle, or whatever!',
+			image: '/pile_of_stickers.webp',
+			hours: 1
+		},
+		{
+			name: 'Commit Hoodie',
+			description:
+				'A hoodie with the Commit logo on it. Definitely wear to events. DESIGN NOT FINAL.',
+			image: '/hoodie.png',
+			hours: 12
+		}
 	];
 	let shopItems2 = [
-		{ name: 'Personal hosting', description: "Every journey needs to start somewhere, but also needs to be sent somewhere.", image: '/serverhosting.png'},
-		{ name: 'Random Access Memory', description: "Get that sweet sweet 256MB? of ram that you've always wanted.", image: "/dram.jpg"},
-		{ name: "Keyboard Grant", description: 'We shall grant you a keyboard of due power, clickety clacks, and some lighting.', image: "/keyboard.jpg"}
-	]
+		{
+			name: 'Personal hosting',
+			description: 'Every journey needs to start somewhere, but also needs to be sent somewhere.',
+			image: '/serverhosting.png',
+			hours: 4
+		},
+		{
+			name: 'Random Access Memory',
+			description: "Get that sweet sweet 256MB? of ram that you've always wanted.",
+			image: '/dram.jpg',
+			hours: 20
+		},
+		{
+			name: 'Keyboard Grant',
+			description:
+				'We shall grant you a keyboard of due power, clickety clacks, and some lighting.',
+			image: '/keyboard.jpg',
+			hours: 25
+		}
+	];
 	let shopItems3 = [
-		{ name: '"Linux ISOs" disk', description: "A USB drive so you can enjoy your 'Linux ISOs' in 4k24fps (unless eu where 25fps)!!!", image: '/usb.avif'},
-		{ name: '"Beyond Linux" disks', description: "Sometimes those 'Linux ISOs' need a bigger, more powerful, and more permanent home.", image: "/harddisk.jpg"},
-		{ name: '"Linus" disks', description: 'Neither a stick or a disk shall satisfy my needs, only a... slightly... bigger... disk...', image: "/hdd.jpg"}
-	]
+		{
+			name: '"Linux ISOs" disk',
+			description:
+				"A USB drive so you can enjoy your 'Linux ISOs' in 4k24fps (unless eu where 25fps)!!!",
+			image: '/usb.avif',
+			hours: 6
+		},
+		{
+			name: '"Beyond Linux" disks',
+			description:
+				"Sometimes those 'Linux ISOs' need a bigger, powerful, and permanent home.",
+			image: '/harddisk.jpg',
+			hours: 15
+		},
+		{
+			name: '"Linus" disks',
+			description:
+				'Neither a stick or a disk shall satisfy my needs, only a... slightly... bigger... disk...',
+			image: '/hdd.jpg',
+			hours: 30
+		}
+	];
 
 	const faqs = [
 		{
@@ -176,7 +229,8 @@
 		},
 		{
 			question: 'How can I track my progress?',
-			answer: 'You will be using Hackatime to track time spent coding. More hours = more points, but quality also matters a lot! You have to be between 13-18yo.'
+			answer:
+				'You will be using Hackatime to track time spent coding. More hours = more points, but quality also matters a lot! You have to be between 13-18yo.'
 		},
 		{
 			question: 'Can I BYOP? (bring your own project)',
@@ -187,19 +241,21 @@
 			answer: 'Absolutely! Join the Slack channel to suggest items you want to see in the shop.'
 		},
 		{
-			question: "Can I help out?",
-			answer: 'Yes! Join the Slack channel to find out how you can help out, whether that be through coding, design, or just spreading the word.'
+			question: 'Can I help out?',
+			answer:
+				'Yes! Join the Slack channel to find out how you can help out, whether that be through coding, design, or just spreading the word.'
 		},
 		{
 			question: "I don't understand. Who do I ask for help?",
-			answer: 'Join the Slack channel and ask away! We have a bunch of people there who would be more than happy to help you out with any questions you have, whether it be about the YSWS or just coding in general.'
+			answer:
+				'Join the Slack channel and ask away! We have a bunch of people there who would be more than happy to help you out with any questions you have, whether it be about the YSWS or just coding in general.'
 		}
 	];
 </script>
 
 <!-- initialDone because we want to have the project and commit messages change around for fun -->
 <div
-	class="flex h-120 w-full flex-col items-center justify-center gap-5 bg-black/40 text-white backdrop-blur-3xl transition-all"
+	class="flex h-120 w-full flex-col items-center justify-center gap-5 text-white backdrop-blur-sm transition-all"
 >
 	<div class="flex w-full flex-row items-center justify-center gap-4 font-mono text-3xl">
 		<div class="flex flex-1 flex-row justify-end gap-2 truncate text-right text-gray-300">
@@ -288,81 +344,107 @@
 			In this YSWS, you commit and make PRs on our public community projects. These community
 			projects come from Commit, and are purely worked on by people like you! As you commit and get
 			your code merged, you gain more trust in the community based on the quality of your work, and
-			can gain higher roles and even the ability to <b>help manage (and start) your own community projects</b>! Every
-			completed PR can earn you points in the shop. You can then get items from the shop based on
-			the amount of points you have.
+			can gain higher roles and even the ability to <b
+				>help manage (and start) your own community projects</b
+			>! Every completed PR can earn you points in the shop. You can then get items from the shop
+			based on the amount of points you have.
 		</div>
 		<h3>tl;dr:</h3>
-		<div class="flex flex-row flex-wrap items-center justify-center gap-2 *:rounded-2xl *:bg-black/20 *:backdrop-blur-3xl *:border *:border-green-200/40 *:hover:bg-black/40 *:hover:scale-105 *:transition-all">
+		<div class="flex flex-col items-center justify-center gap-4">
+			<WorkflowAnimation />
 			<div
-				class="bg-green-/50 flex h-48 w-48 flex-col items-center justify-center rounded-lg p-4 text-center"
+				class="flex flex-row flex-wrap items-center justify-center gap-2 *:rounded-2xl *:border *:border-green-200/40 *:bg-black/20 *:backdrop-blur-sm *:transition-all *:hover:scale-105 *:hover:bg-black/40"
 			>
-				<div class="text-xl font-bold">Issue</div>
-				<div>Create an issue with what you want to add or fix.</div>
-			</div>
-			<div
-				class="bg-green-/50 flex h-48 w-48 flex-col items-center justify-center rounded-lg p-4 text-center"
-			>
-				<div class="text-xl font-bold"><code>git clone</code></div>
-				<div>Clone a copy of the repository to your computer.</div>
-			</div>
-			<div
-				class="bg-green-/50 flex h-48 w-48 flex-col items-center justify-center rounded-lg p-4 text-center"
-			>
-				<div class="text-xl font-bold"><code>git commit</code></div>
-				<div>Write code to help fix a bug, add a feature, or improve the project.</div>
-			</div>
-			<div
-				class="bg-green-/50 flex h-48 w-48 flex-col items-center justify-center rounded-lg p-4 text-center"
-			>
-				<div class="text-xl font-bold"><code>git push</code></div>
-				<div>Push your changes to the remote repository and create a pull request.</div>
-			</div>
-			<div
-				class="bg-green-/50 flex h-48 w-48 flex-col items-center justify-center rounded-lg p-4 text-center"
-			>
-				<div class="text-xl font-bold">Merge</div>
-				<div>Get your pull request merged into the main branch.</div>
+				<div
+					class="bg-green-/50 flex h-48 w-48 flex-col items-center justify-center rounded-lg p-4 text-center"
+				>
+					<div class="text-xl font-bold">Issue</div>
+					<div>Create an issue with what you want to add or fix.</div>
+				</div>
+				<div
+					class="bg-green-/50 flex h-48 w-48 flex-col items-center justify-center rounded-lg p-4 text-center"
+				>
+					<div class="text-xl font-bold"><code>git clone</code></div>
+					<div>Clone a copy of the repository to your computer.</div>
+				</div>
+				<div
+					class="bg-green-/50 flex h-48 w-48 flex-col items-center justify-center rounded-lg p-4 text-center"
+				>
+					<div class="text-xl font-bold"><code>git commit</code></div>
+					<div>Write code to help fix a bug, add a feature, or improve the project.</div>
+				</div>
+				<div
+					class="bg-green-/50 flex h-48 w-48 flex-col items-center justify-center rounded-lg p-4 text-center"
+				>
+					<div class="text-xl font-bold"><code>git push</code></div>
+					<div>Push your changes to the remote repository and create a pull request.</div>
+				</div>
+				<div
+					class="bg-green-/50 flex h-48 w-48 flex-col items-center justify-center rounded-lg p-4 text-center"
+				>
+					<div class="text-xl font-bold">Merge</div>
+					<div>Get your pull request merged into the main branch.</div>
+				</div>
 			</div>
 		</div>
 	</div>
-	<div class="flex max-w-full flex-col items-center justify-center overflow-x-hidden overflow-y-visible py-20">
+	<div
+		class="-mb-10 flex max-w-full flex-col items-center justify-center overflow-x-hidden overflow-y-visible py-20"
+	>
 		<div class="text-4xl font-bold">we ship!</div>
 		<div class="max-w-2xl p-2 text-center">cool stuff. not final as of now!!!!</div>
-		<div class="w-full bg-slate-800 my-2 overflow-visible -rotate-5 scale-105">
+		<div class="my-2 w-full scale-105 -rotate-5 overflow-visible backdrop-blur-sm">
 			<Marqueeck>
 				{#each shopItems as item}
-					<div class="my-5 flex max-h-36 flex-row border-green-300/20 border-2 hover:bg-green-500/20 group transition-all rounded-2xl overflow-visible">
-						<img src={item.image} alt={item.name} class="group-hover:rotate-6 transition-all overflow-visible rounded-lg bg-white p-5 h-36 aspect-auto" />
+					<div
+						class="group my-5 flex max-h-36 flex-row overflow-visible rounded-2xl border-2 border-green-300/20 transition-all hover:bg-green-500/20"
+					>
+						<img
+							src={item.image}
+							alt={item.name}
+							class="aspect-auto h-36 overflow-visible rounded-lg bg-white p-5 transition-all group-hover:rotate-6"
+						/>
 						<div class="bg-green-/50 flex w-56 flex-col justify-center rounded-lg p-4 text-left">
 							<div class="text-xl font-bold">{item.name}</div>
-							<div>{item.description}</div>
+							<div>{item.description} • {item.hours} hours</div>
 						</div>
 					</div>
 				{/each}
 			</Marqueeck>
 		</div>
-		<div class="w-full bg-slate-800 my-2 overflow-visible -rotate-5 scale-105">
+		<div class="my-2 w-full scale-105 -rotate-5 overflow-visible backdrop-blur-sm">
 			<Marqueeck speed={40}>
 				{#each shopItems2 as item}
-					<div class="my-5 flex max-h-36 flex-row border-green-300/20 border-2 hover:bg-green-500/20 group transition-all rounded-2xl overflow-visible">
-						<img src={item.image} alt={item.name} class="group-hover:rotate-6 transition-all overflow-visible rounded-lg bg-white p-5 h-36 aspect-auto" />
+					<div
+						class="group my-5 flex max-h-36 flex-row overflow-visible rounded-2xl border-2 border-green-300/20 transition-all hover:bg-green-500/20"
+					>
+						<img
+							src={item.image}
+							alt={item.name}
+							class="aspect-auto h-36 overflow-visible rounded-lg bg-white p-5 transition-all group-hover:rotate-6"
+						/>
 						<div class="bg-green-/50 flex w-56 flex-col justify-center rounded-lg p-4 text-left">
 							<div class="text-xl font-bold">{item.name}</div>
-							<div>{item.description}</div>
+							<div>{item.description} • {item.hours} hours</div>
 						</div>
 					</div>
 				{/each}
 			</Marqueeck>
 		</div>
-		<div class="w-full bg-slate-800 my-2 overflow-visible -rotate-5 scale-105">
+		<div class="my-2 w-full scale-105 -rotate-5 overflow-visible backdrop-blur-sm">
 			<Marqueeck speed={40}>
 				{#each shopItems3 as item}
-					<div class="my-5 flex max-h-36 flex-row border-green-300/20 border-2 hover:bg-green-500/20 group transition-all rounded-2xl overflow-visible">
-						<img src={item.image} alt={item.name} class="group-hover:rotate-6 transition-all overflow-visible rounded-lg bg-white p-5 h-36 aspect-auto" />
+					<div
+						class="group my-5 flex max-h-36 flex-row overflow-visible rounded-2xl border-2 border-green-300/20 transition-all hover:bg-green-500/20"
+					>
+						<img
+							src={item.image}
+							alt={item.name}
+							class="aspect-auto h-36 overflow-visible rounded-lg bg-white p-5 transition-all group-hover:rotate-6"
+						/>
 						<div class="bg-green-/50 flex w-56 flex-col justify-center rounded-lg p-4 text-left">
 							<div class="text-xl font-bold">{item.name}</div>
-							<div>{item.description}</div>
+							<div>{item.description} • {item.hours} hours</div>
 						</div>
 					</div>
 				{/each}
@@ -384,5 +466,4 @@
 			{/each}
 		</div>
 	</div>
-
 </div>
